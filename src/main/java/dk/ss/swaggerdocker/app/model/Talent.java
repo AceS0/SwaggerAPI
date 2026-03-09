@@ -1,6 +1,7 @@
 package dk.ss.swaggerdocker.app.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dk.ss.swaggerdocker.app.model.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class Talent extends BaseEntity {
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    @JsonProperty("profile_text")
     private String profileText;
 
     @Column(nullable = false)
@@ -42,13 +44,14 @@ public class Talent extends BaseEntity {
 
     private String github;
     private String linkedin;
+    private String projekter;
 
     @OneToMany(mappedBy = "talent", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Document> documents;
 
     public Talent(String name, String title, String profileText, String email,
-                  String phone, String city, String country, String github, String linkedin) {
+                  String phone, String city, String country, String github, String linkedin, String projekter) {
         this.name = name;
         this.title = title;
         this.profileText = profileText;
@@ -58,6 +61,7 @@ public class Talent extends BaseEntity {
         this.country = country;
         this.github = github;
         this.linkedin = linkedin;
+        this.projekter = projekter;
         this.documents = new java.util.ArrayList<>();
     }
 }

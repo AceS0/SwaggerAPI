@@ -7,6 +7,7 @@ import dk.ss.swaggerdocker.app.repository.TalentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TalentService {
@@ -23,16 +24,16 @@ public class TalentService {
         return talentRepository.findAll();
     }
 
-    public Talent getTalentById(Long id) {
+    public Talent getTalentById(UUID id) {
         return talentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Talent not found with id: " + id));
     }
 
-    public List<Document> getDocumentsByTalentId(Long talentId) {
+    public List<Document> getDocumentsByTalentId(UUID talentId) {
         return documentRepository.findByTalentId(talentId);
     }
 
-    public Document getDocumentByTalentIdAndDocumentId(Long talentId, Long documentId) {
+    public Document getDocumentByTalentIdAndDocumentId(UUID talentId, UUID documentId) {
         Document document = documentRepository.findById(documentId)
                 .orElseThrow(() -> new RuntimeException("Document not found with id: " + documentId));
 

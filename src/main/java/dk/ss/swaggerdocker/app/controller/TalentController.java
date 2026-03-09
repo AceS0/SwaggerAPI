@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -25,17 +26,17 @@ public class TalentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Talent> getTalent(@PathVariable Long id) {
+    public ResponseEntity<Talent> getTalent(@PathVariable UUID id) {
         return ResponseEntity.ok(talentService.getTalentById(id));
     }
 
     @GetMapping("/{id}/documents")
-    public ResponseEntity<List<Document>> getDocuments(@PathVariable Long id) {
+    public ResponseEntity<List<Document>> getDocuments(@PathVariable UUID id) {
         return ResponseEntity.ok(talentService.getDocumentsByTalentId(id));
     }
 
     @GetMapping("/{talentId}/documents/{documentId}")
-    public ResponseEntity<Document> getDocument(@PathVariable Long talentId, @PathVariable Long documentId) {
+    public ResponseEntity<Document> getDocument(@PathVariable UUID talentId, @PathVariable UUID documentId) {
         return ResponseEntity.ok(talentService.getDocumentByTalentIdAndDocumentId(talentId, documentId));
     }
 }

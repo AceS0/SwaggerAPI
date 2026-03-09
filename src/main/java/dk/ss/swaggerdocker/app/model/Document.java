@@ -1,7 +1,7 @@
 package dk.ss.swaggerdocker.app.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dk.ss.swaggerdocker.app.model.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class Document extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "talent_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Talent talent;
 
     public Document(String name, String content) {
